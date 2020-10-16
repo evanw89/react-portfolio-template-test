@@ -1,0 +1,647 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: #484848;
+  font-family: "Quicksand", sans-serif;
+}
+textarea {
+  resize: none;
+  outline: none;
+}
+img {
+  object-fit: cover;
+}
+
+#root {
+  background: #e3ebee;
+}
+
+.LandingPageTooltip {
+  position: absolute;
+  opacity: 0;
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  animation-delay: 3s;
+  animation: fadeInOut 2s ease-in-out 3s infinite alternate;
+}
+.ViewContainer {
+  height: 100vh;
+  width: 100vw;
+}
+.PageWrapper {
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+}
+.Page {
+  background: #fff;
+  min-width: 400px;
+  max-width: 1200px;
+  padding: 2rem;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 20px #ccc;
+  overflow: scroll;
+}
+.TitleWrapper {
+  max-width: 200px;
+  white-space: nowrap;
+}
+.AvatarImg {
+  height: 250px;
+  width: 250px;
+}
+.ContactBtn {
+  height: 50px;
+  width: 50px;
+  top: 1rem;
+  right: 1rem;
+  transition: 0.15s ease-in-out;
+}
+.ContactBtn:hover {
+  transform: scale(1.2);
+  background: #76dde3;
+  box-shadow: 0 0 10px #fff0b6;
+  color: #fff;
+}
+.ContactModalWrapper,
+.ProjectModalWrapper {
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.ContactModal {
+  height: 100%;
+  width: 100%;
+  min-width: 335px;
+}
+.ContactModalBody textarea {
+  border-style: dashed;
+  min-width: 275px;
+}
+.ContactModalBody textarea::placeholder {
+  color: #76dde3;
+}
+.ContactModalBody textarea:focus {
+  border-style: solid;
+}
+.ContactModalBody button {
+  border: none;
+  outline: none;
+  transition: 0.15s ease-in-out;
+}
+.ContactModalBody button:hover {
+  transform: scale(1.1);
+  background: tomato !important;
+}
+.ContactModalCloseBtn,
+.ProjectModalCloseBtn {
+  height: 50px;
+  width: 50px;
+  top: -1rem;
+  right: -1rem;
+  transition: 0.15s ease-in-out;
+}
+.ProjectModalCloseBtn {
+  top: 3rem;
+  right: 3rem;
+}
+.ContactModalCloseBtn:hover,
+.ProjectModalCloseBtn:hover {
+  transform: scale(1.2);
+  background: tomato;
+  color: #fff;
+}
+.NextViewBtn i {
+  transition: 0.3s ease-in-out;
+}
+.NextViewBtn:hover i {
+  transform: translateY(5px);
+}
+.NextViewBtnLabel {
+  opacity: 0;
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-100%);
+  transition: 0.25s ease-in-out;
+}
+.NextViewBtn:hover .NextViewBtnLabel {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+.NextViewBtn.bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+}
+.NextViewBtn.right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+.NextViewBtn.left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+.ProjectItemWrapper {
+  min-height: 300px;
+  min-width: 300px !important;
+}
+.ProjectItem {
+  position: relative;
+  height: 100%;
+}
+.ProjectItem::after,
+.Project::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  height: 0;
+  opacity: 0;
+  width: 100%;
+  background: #76dde3;
+  mix-blend-mode: darken;
+  box-shadow: 0 0 50px #76dde3;
+  transition: 0.15s ease-in-out;
+}
+.ProjectItem:hover::after,
+.Project:hover::after {
+  box-shadow: 0 0 5px #76dde3;
+  height: 100%;
+  opacity: 1;
+}
+.ProjectModal {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+.Project {
+  position: relative;
+  height: 130px;
+}
+.ProjectImage {
+  position: relative;
+  z-index: 2;
+}
+.ExperienceBody,
+.EducationBody {
+  max-width: 900px;
+  margin: auto;
+}
+.SlideshowWrapper {
+  position: relative;
+  z-index: 2;
+}
+.TestimonialsBody {
+  position: relative;
+  margin: auto;
+  height: 320px;
+  min-width: 330px !important;
+  max-width: 700px;
+}
+.TestimonialsBody::after {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ccc;
+  border-radius: 50%;
+  height: 1.5rem;
+  width: 1.5rem;
+  box-shadow: 2.25rem 0 0 #ccc, -2.25rem 0 0 #ccc;
+  animation: ellipsesLoader 1s linear;
+  animation-iteration-count: 3;
+}  
+@keyframes ellipsesLoader {
+  0% {
+    opacity: 1;
+    background: #cccccc10;
+    box-shadow: 2.25rem 0 0 #cccccc10, -2.25rem 0 0 #cccccc50;
+  }
+  25% {
+    opacity: 1;
+    background: #cccccc50;
+    box-shadow: 2.25rem 0 0 #cccccc10, -2.25rem 0 0 #ccc;
+  }
+  50% {
+    opacity: 1;
+    background: #ccc;
+    box-shadow: 2.25rem 0 0 #cccccc50, -2.25rem 0 0 #cccccc50;
+  }
+  75% {
+    opacity: 1;
+    background: #cccccc50;
+    box-shadow: 2.25rem 0 0 #cccccc, -2.25rem 0 0 #cccccc10;
+  }
+  100% {
+    opacity: 1;
+    background: #cccccc10;
+    box-shadow: 2.25rem 0 0 #cccccc10, -2.25rem 0 0 #cccccc10;
+  }
+}
+
+.TestimonialItem {
+  background: #FFF;
+}
+.TestimonialImage {
+  height: 150px;
+  width: 150px;
+}
+.AboutMeContent {
+  width: 300px;
+  margin: auto;
+  text-align: justify;
+}
+.ExperienceItemLabel,
+.EducationItemLabel {
+  min-width: 250px;
+}
+.SocialMediaLinks a {
+  transition: 0.15s ease-in-out;
+}
+.SocialMediaLinks a:hover {
+  transform: scale(1.2);
+}
+
+@keyframes fadeInOut {
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes titleAnimateOut {
+  85% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  95% {
+    transform: translate(0, 7px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes slideshowAnimateOut {
+  85% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  95% {
+    transform: translate(7px, 0);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* utility classes */
+a {
+  display: inline-block;
+  color: initial;
+  text-decoration: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.h1 {
+  font-size: 2rem;
+}
+.h2 {
+  font-size: 1.5rem;
+}
+.h3 {
+  font-size: 1.25rem;
+}
+.h4 {
+  font-size: 1rem;
+}
+.h5 {
+  font-size: 0.75rem;
+}
+.h6 {
+  font-size: 0.5rem;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+.p1 {
+  padding: 0.5rem;
+}
+.pt1 {
+  padding-top: 0.5rem;
+}
+.pr1 {
+  padding-right: 0.5rem;
+}
+.pb1 {
+  padding-bottom: 0.5rem;
+}
+.pl1 {
+  padding-left: 0.5rem;
+}
+.p2 {
+  padding: 1rem;
+}
+.pt2 {
+  padding-top: 1rem;
+}
+.pr2 {
+  padding-right: 1rem;
+}
+.pb2 {
+  padding-bottom: 1rem;
+}
+.pl2 {
+  padding-left: 1rem;
+}
+.p3 {
+  padding: 2rem;
+}
+.pt3 {
+  padding-top: 2rem;
+}
+.pr3 {
+  padding-right: 2rem;
+}
+.pb3 {
+  padding-bottom: 2rem;
+}
+.pl3 {
+  padding-left: 2rem;
+}
+.p4 {
+  padding: 4rem;
+}
+.pt4 {
+  padding-top: 4rem;
+}
+.pr4 {
+  padding-right: 4rem;
+}
+.pr5 {
+  padding-right: 8rem;
+}
+.pb4 {
+  padding-bottom: 4rem;
+}
+.pl4 {
+  padding-left: 4rem;
+}
+.pl5 {
+  padding-left: 8rem;
+}
+.m1 {
+  margin: 0.5rem;
+}
+.mt1 {
+  margin-top: 0.5rem;
+}
+.mr1 {
+  margin-right: 0.5rem;
+}
+.mb1 {
+  margin-bottom: 0.5rem;
+}
+.ml0 {
+  margin-left: 0;
+}
+.ml1 {
+  margin-left: 0.5rem;
+}
+.m2 {
+  margin: 1rem;
+}
+.mt2 {
+  margin-top: 1rem;
+}
+.mr2 {
+  margin-right: 1rem;
+}
+.mb2 {
+  margin-bottom: 1rem;
+}
+.ml2 {
+  margin-left: 1rem;
+}
+.m3 {
+  margin: 2rem;
+}
+.mt3 {
+  margin-top: 2rem;
+}
+.mr3 {
+  margin-right: 2rem;
+}
+.mb3 {
+  margin-bottom: 2rem;
+}
+.ml3 {
+  margin-left: 2rem;
+}
+.m4 {
+  margin: 4rem;
+}
+.mt4 {
+  margin-top: 4rem;
+}
+.mr4 {
+  margin-right: 4rem;
+}
+.mb4 {
+  margin-bottom: 4rem;
+}
+.ml4 {
+  margin-left: 4rem;
+}
+.bold {
+  font-weight: bold;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.top {
+  top: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.outline-none {
+  outline: 0;
+}
+.border-none {
+  border: 0;
+}
+.bg-none {
+  background: none;
+}
+.bg-white {
+  background: #fff !important;
+}
+.bg-gray {
+  background: #ccc !important;
+}
+.bg-primary {
+  background: #76dde3 !important;
+}
+.bg-primary-light {
+  background: #76dde380 !important;
+}
+.b-primary {
+  border: 2px solid #76dde3;
+}
+.b-primary-thin {
+  border: 1px solid #76dde3;
+}
+.b-t-primary {
+  border-top: 2px solid #76dde3;
+}
+.b-l-primary {
+  border-left: 2px solid #76dde3;
+}
+.b-r-primary {
+  border-right: 2px solid #76dde3;
+}
+.b-b-primary {
+  border-bottom: 2px solid #76dde3;
+}
+.b-t-primary-thin {
+  border-top: 1px solid #76dde3;
+}
+.b-b-primary-thin {
+  border-bottom: 1px solid #76dde3;
+}
+.color-primary {
+  color: #76dde3;
+}
+.color-white {
+  color: #fff;
+}
+.card {
+  background: #fff;
+  box-shadow: 0 0 20px #ccc;
+}
+.round {
+  border-radius: 50%;
+}
+.pointer {
+  cursor: pointer;
+}
+.align-center {
+  text-align: center;
+}
+.align-left {
+  text-align: left;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-auto {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-center {
+  align-items: center;
+}
+.w25pct {
+  width: 25%;
+  min-width: 25%;
+}
+.w33pct {
+  width: 33%;
+  min-width: 33%;
+}
+.w50pct {
+  width: 50%;
+  min-width: 50%;
+}
+.w75pct {
+  width: 75%;
+  min-width: 75%;
+}
+.w100pct {
+  width: 100%;
+  min-width: 100%;
+}
+.h100pct {
+  height: 100%;
+  min-height: 100%;
+}
+.white-space-pre {
+  white-space: pre;
+}
+.white-space-pre-line {
+  white-space: pre-line;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.float-right {
+  float: right;
+}
